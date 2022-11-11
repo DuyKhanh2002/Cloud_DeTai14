@@ -16,9 +16,9 @@
 
 ## Thành viên của nhóm
 
-- 19133028 Đoàn Trần Đăng Khoa
-- 19133038 Lê Thị Kim Ngân
-- 19133055 Đào Thị Cẩm Tiên
+- 20110502 Phan Duy Khánh
+- 20110088 Nguyễn Anh Khoa
+- 20110599 Hà Nhật Vềnh
 
 ## Chạy trên Localhost
 
