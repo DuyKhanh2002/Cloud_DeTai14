@@ -9,9 +9,9 @@ import pymysql
 import json
 
 def InfoConnection():
-    rds_host = "database-1.cydv8y57l6qi.us-east-1.rds.amazonaws.com"
+    rds_host = "database-test.clcqijtl2xor.us-east-1.rds.amazonaws.com"
     name = "admin"
-    password = "duykhanh"
+    password = "12345678"
     db_name = ""
 
     try:
