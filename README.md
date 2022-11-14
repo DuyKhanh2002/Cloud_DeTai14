@@ -123,7 +123,7 @@ sudo apt-get install gunicorn3
 Dùng git clone để project về 
 
 ```bash
-  git clone https://github.com/ngan429/DETAI14.git
+  git clone https://github.com/DuyKhanh2002/Cloud_DeTai14.git
 ```
 
 Truy cập vào flaskapplication
