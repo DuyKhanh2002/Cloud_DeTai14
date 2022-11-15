@@ -6,7 +6,7 @@ from flask_babelex import Babel
 
 app = Flask(__name__)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://admin:12345678@database-test.clcqijtl2xor.us-east-1.rds.amazonaws.com/ManageUser?charset=utf8mb4"
+app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://admin:12345678@database-test3306.clcqijtl2xor.us-east-1.rds.amazonaws.com/ManageUser?charset=utf8mb4"
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=120)
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
 app.config['SECRET_KEY'] = '1fabace46bcf5b6eebda3de7'
