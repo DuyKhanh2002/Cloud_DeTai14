@@ -24,13 +24,13 @@
 
 Clone project từ github
 ```
-  git clone https://github.com/ngan429/DETAI14.git
+  git clone https://github.com/DuyKhanh2002/Cloud_DeTai14.git
 ```
 
 Truy cập thư mục chứa project
 
 ```bash
-  cd DETAI14
+  cd Cloud_DeTai14
 ```
 
 Tạo môi trường ảo
@@ -136,7 +136,7 @@ mkdir flaskapplication
 ```
 
 ```bash
-cd DETAI14
+cd Cloud_DeTai14
 ```
 
 ```bash
