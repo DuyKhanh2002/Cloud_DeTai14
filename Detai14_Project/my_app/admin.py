@@ -12,7 +12,7 @@ class MyUserIndexView(AdminIndexView):
     @expose('/')
     def index(self):
         if not current_user:
-            flash('Please log in first...', category='danger')
+            flash('Please log in first...', category='danger')# 123123
             return redirect(url_for('login_account'))
         userCreateDatabase = UserCreateDatabase.query.filter_by(IdUserCreate = current_user.Id)
         self._template_args["userCreateDatabase"] = userCreateDatabase
