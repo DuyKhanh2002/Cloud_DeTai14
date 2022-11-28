@@ -1,0 +1,25 @@
+- Ctrl Shift N mở VSCode mới
+- Chọn Clone Repository > gán link >
+https://github.com/DuyKhanh2002/Cloud_DeTai14
+
+- Chọn folder lưu project sắp clone về
+
+*Đăng nhập Git vào VSCode - góc trái phía dưới VSCode
+________
+! ko cần "git init" nữa vì clone đã có mục .git rồi (.git chứa cấu hình của repo và bị hide)
+
+### thay đổi code j đó #### m sẽ thấy có mấy dấu chấm ở file (kệ nó :D)
+
+B1: git add . (chọn các file đã thay đổi || ở đây chọn hết ".")
+B2: git commit -m "your_mess" (ghi những j m thay đổi trong này: vd: update view)
+B3: push
+git push (lệnh rút gọn)
+
+git push -u <remote> <branch-name> (đầy đủ)
++ remote: t thấy nó là cái đường link.
+check = git remote -v
++ branch: là nhánh. t đọc đâu đó thì cái này lúc trước default "master" bây giờ là "main"
+NHƯNG T CHECK THẤY NÓ LÀ "MASTER"
+check = git branch
+>>> git push -u origin master
+ 
