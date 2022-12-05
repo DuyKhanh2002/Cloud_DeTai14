@@ -53,20 +53,18 @@ class SubmitUserCreateDatabase(BaseView):
         if request.method == "POST":
             getNamDatabase = ""
             if request.method == "POST":
+                sqs = boto3.client('sqs', aws_access_key_id='AKIAW42XZTVSJTHUE56I', 
+                aws_secret_access_key='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', region_name='us-east-1')
+
                 getNamDatabase = (current_user.UserName + "_" + request.form.get('nameDatabase'))
 
-                url = "https://sqs.us-east-1.amazonaws.com/474241146212/test"
-                headers = {"Content-Type": "application/x-www-form-urlencoded"}
-
-                payload = {
-                    "name_database": getNamDatabase
-                }
-                payload = quote(str(payload))
-                params = {
-                    'Action': 'SendMessage',
-                    'MessageBody': payload
-                }
-                send = requests.post(url, headers=headers, params=params)
+                url = 'https://sqs.us-east-1.amazonaws.com/474241146212/AddDatabase'
+                
+                
+                messageBody = {"name_database": getNamDatabase}
+                messageBody = quote(str(messageBody))
+                SendRequest = sqs.send_message(QueueUrl= url, MessageBody=messageBody)
+                #send = requests.post(QueueUrl= url, MessageBody=messageBody)
 
                 userCreateDatabase = UserCreateDatabase()
                 userCreateDatabase.Active = 1
