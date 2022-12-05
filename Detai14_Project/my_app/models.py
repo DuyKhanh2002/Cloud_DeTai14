@@ -4,6 +4,7 @@ from my_app import db
 from flask_login import UserMixin
 from datetime import datetime
 from flask_login.mixins import *
+from my_app.models import *
 
 class Users(db.Model, UserMixin):
     Id = db.Column(db.Integer(), primary_key=True, autoincrement=True)

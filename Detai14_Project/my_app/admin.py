@@ -1,5 +1,7 @@
 import time
-
+import datetime
+from datetime import date
+import json
 from flask import flash, Response
 from flask_admin import AdminIndexView, expose, Admin, BaseView
 from flask_admin.contrib.sqla import ModelView
@@ -7,12 +9,13 @@ from my_app.common import *
 from my_app.models import UserCreateDatabase
 from my_app.utils import *
 from urllib.parse import unquote, quote
+import boto3
 
 class MyUserIndexView(AdminIndexView):
     @expose('/')
     def index(self):
         if not current_user:
-            flash('Please log in first...', category='danger')# 123123
+            flash('Please log in first...', category='danger')
             return redirect(url_for('login_account'))
         userCreateDatabase = UserCreateDatabase.query.filter_by(IdUserCreate = current_user.Id)
         self._template_args["userCreateDatabase"] = userCreateDatabase
@@ -52,7 +55,7 @@ class SubmitUserCreateDatabase(BaseView):
             if request.method == "POST":
                 getNamDatabase = (current_user.UserName + "_" + request.form.get('nameDatabase'))
 
-                url = "https://sqs.us-east-1.amazonaws.com/126581837666/testQueue"
+                url = "https://sqs.us-east-1.amazonaws.com/474241146212/test"
                 headers = {"Content-Type": "application/x-www-form-urlencoded"}
 
                 payload = {

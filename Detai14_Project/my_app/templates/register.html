@@ -18,6 +18,14 @@
 
 	<link href="static/css/app.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+	<style>
+        body{
+            background-image: url(https://thuthuatnhanh.com/wp-content/uploads/2022/06/Hinh-nen-iPad-4K.jpg);
+            background-repeat: no-repeat;
+          background-attachment: fixed;
+          background-size: 100% 100%;
+        }
+                </style>
 </head>
 
 <body>
@@ -28,7 +36,7 @@
 					<div class="d-table-cell align-middle">
 
 						<div class="text-center mt-4">
-							<h1 class="h2">Register</h1>
+							<h1 class="h2">Sign Up</h1>
 							<p class="lead">
 							</p>
 							<p class="lead">
@@ -42,19 +50,19 @@
 									<form method="post" action="{{url_for('register_user')}}">
 										<div class="mb-3">
 											<label class="form-label">Email</label>
-											<input class="form-control form-control-lg" type="email" name="email" placeholder="Enter your email" />
+											<input class="form-control form-control-lg" type="email" name="email" placeholder="Nhập email" />
 										</div>
 										<div class="mb-3">
 											<label class="form-label">User Name</label>
-											<input class="form-control form-control-lg" type="text" name="username" placeholder="Enter your user name" />
+											<input class="form-control form-control-lg" type="text" name="username" placeholder="Nhập user name" />
 										</div>
 										<div class="mb-3">
 											<label class="form-label">Password</label>
-											<input class="form-control form-control-lg" type="password" name="password" placeholder="Enter password" />
+											<input class="form-control form-control-lg" type="password" name="password" placeholder="Nhập mật khẩu" />
 										</div>
 										<div class="mb-3">
 											<label class="form-label">Confirm Password</label>
-											<input class="form-control form-control-lg" type="password" name="confirm_password" placeholder="Enter password" />
+											<input class="form-control form-control-lg" type="password" name="confirm_password" placeholder="Nhập lại mật khẩu" />
 										</div>
 										<div class="text-center mt-3">
 <!--											<a href="index.html" class="btn btn-lg btn-primary">Sign up</a>-->
