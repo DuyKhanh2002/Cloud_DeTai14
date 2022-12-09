@@ -6,6 +6,22 @@ from datetime import datetime
 from flask_login.mixins import *
 from my_app.models import *
 
+
+
+class UserCreateDatabase(db.Model):
+    __tablename__ = "UserCreateDatabase"
+    Id = db.Column(db.Integer(), primary_key=True, autoincrement=True)
+    Name = db.Column(db.String(length=200), nullable=False)
+    IdUserCreate = db.Column(db.Integer(), nullable=False)
+    CreateDate = db.Column(db.DateTime, nullable=False, default=datetime.now())
+    Active = db.Column(db.Integer(), nullable=False)
+
+class Datatype(db.Model):
+    __tablename__ = "Datatype"
+    Id = db.Column(db.Integer(), primary_key=True, autoincrement=True)
+    Name = db.Column(db.String(length=50), nullable=False)
+    CheckInputNumber = db.Column(db.Integer(), nullable=False)
+    Active = db.Column(db.Integer(), nullable=False)
 class Users(db.Model, UserMixin):
     Id = db.Column(db.Integer(), primary_key=True, autoincrement=True)
     FullName = db.Column(db.String(length=200), nullable=True)
@@ -23,21 +39,5 @@ class Users(db.Model, UserMixin):
             return text_type(self.Id)
         except AttributeError:
             raise NotImplementedError('No `id` attribute - override `get_id`')
-
-class UserCreateDatabase(db.Model):
-    __tablename__ = "UserCreateDatabase"
-    Id = db.Column(db.Integer(), primary_key=True, autoincrement=True)
-    Name = db.Column(db.String(length=200), nullable=False)
-    IdUserCreate = db.Column(db.Integer(), nullable=False)
-    CreateDate = db.Column(db.DateTime, nullable=False, default=datetime.now())
-    Active = db.Column(db.Integer(), nullable=False)
-
-class Datatype(db.Model):
-    __tablename__ = "Datatype"
-    Id = db.Column(db.Integer(), primary_key=True, autoincrement=True)
-    Name = db.Column(db.String(length=50), nullable=False)
-    CheckInputNumber = db.Column(db.Integer(), nullable=False)
-    Active = db.Column(db.Integer(), nullable=False)
-
 if __name__ == '__main__':
     db.create_all()

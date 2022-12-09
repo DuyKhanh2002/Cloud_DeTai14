@@ -5,22 +5,6 @@ from flask_login import login_user, logout_user, login_required, current_user
 from my_app import admin, manage
 from my_app import utils
 
-
-@app.route("/home")
-def home():
-    return render_template("index.html")
-
-
-@app.route("/user/databases/detail/<string:name>", methods=["POST", "GET"])
-def detail():
-    render_template("/admin/detail-database.html")
-
-
-@login_manager.user_loader
-def user_load(user_id):
-    return Users.query.get(user_id)
-
-
 @app.route("/login", methods=["POST", "GET"])
 @app.route("/", methods=["POST", "GET"])
 def login_account():
@@ -77,4 +61,20 @@ def register_user():
 def logout():
     logout_user()
     return redirect(url_for('login_account'))
+@app.route("/home")
+def home():
+    return render_template("index.html")
+
+
+@app.route("/user/databases/detail/<string:name>", methods=["POST", "GET"])
+def detail():
+    render_template("/admin/detail-database.html")
+
+
+@login_manager.user_loader
+def user_load(user_id):
+    return Users.query.get(user_id)
+
+
+
 

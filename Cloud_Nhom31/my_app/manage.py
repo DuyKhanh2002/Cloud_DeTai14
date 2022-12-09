@@ -5,24 +5,6 @@ from my_app.common import *
 from my_app.utils import *
 from urllib.parse import unquote
 
-class MyManageIndexView(AdminIndexView):
-    @expose('/')
-    def index(self):
-        if not current_user:
-            flash('Please log in first...', category='danger')
-            return redirect(url_for('login_account'))
-
-        return redirect(url_for('_manageUser.index'))
-
-class ManageUserView(ModelView):
-    list_template = 'manage/users.html'
-
-    @expose('/')
-    def index(self):
-        users = Users.query.filter_by(IsAdmin=0, IsDelete = 0)
-        self._template_args["listUsers"] = users
-        return super(ManageUserView, self).index_view()
-
 class LockUser(ModelView):
     @expose('/')
     def index(self):
@@ -46,6 +28,25 @@ class DeleteUser(ModelView):
         users.IsDelete = 1
         db.session.commit()
         return redirect(url_for('_manageUser.index'))
+class MyManageIndexView(AdminIndexView):
+    @expose('/')
+    def index(self):
+        if not current_user:
+            flash('Please log in first...', category='danger')
+            return redirect(url_for('login_account'))
+
+        return redirect(url_for('_manageUser.index'))
+
+class ManageUserView(ModelView):
+    list_template = 'manage/users.html'
+
+    @expose('/')
+    def index(self):
+        users = Users.query.filter_by(IsAdmin=0, IsDelete = 0)
+        self._template_args["listUsers"] = users
+        return super(ManageUserView, self).index_view()
+
+
 
 
 manageView = Admin(app, name='Manage', index_view=MyManageIndexView(url='/manage', endpoint='_manage'), base_template='master.html', template_mode='bootstrap4', url='/manage', endpoint='_manage')

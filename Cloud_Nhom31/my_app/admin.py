@@ -11,16 +11,47 @@ from my_app.utils import *
 from urllib.parse import unquote, quote
 import boto3
 
-class MyUserIndexView(AdminIndexView):
-    @expose('/')
-    def index(self):
-        if not current_user:
-            flash('Please log in first...', category='danger')
-            return redirect(url_for('login_account'))
-        userCreateDatabase = UserCreateDatabase.query.filter_by(IdUserCreate = current_user.Id)
-        self._template_args["userCreateDatabase"] = userCreateDatabase
-        return super(MyUserIndexView, self).index()
 
+class SubmitUserManageTableView(BaseView):
+    @expose('/', methods=["POST"])
+    def index(self):
+        i = 1
+        full_query = "("
+        while request.form.get('nameColumnTable' + str(i)) != "" and request.form.get(
+                'nameColumnTable' + str(i)) is not None:
+            query = ""
+            query += request.form.get('nameColumnTable' + str(i)) + " "
+            query += request.form.get('chooseTypeColumn' + str(i))
+            if request.form.get('PK' + str(i)) == "PK":
+                query += " PRIMARY KEY"
+            if request.form.get('NN' + str(i)) == "NN":
+                query += " NOT NULL"
+            if request.form.get('UQ' + str(i)) == "UQ":
+                query += " UNIQUE"
+            if request.form.get('nameColumnTable' + str(i + 1)) != "" and request.form.get(
+                    'nameColumnTable' + str(i + 1)) is not None:
+                query += ","
+            full_query += query
+            i = i + 1
+        full_query += ");"
+        getNameDatabase = (current_user.UserName + "_" + request.form.get('choose_database'))
+        getNameTable = request.form.get('nameTable')
+
+        if request.method == "POST":
+            sqs = boto3.client('sqs', aws_access_key_id='AKIAW42XZTVSJTHUE56I',
+            aws_secret_access_key='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', region_name='us-east-1')
+
+            url = 'https://sqs.us-east-1.amazonaws.com/474241146212/AddTable'
+
+            messageBody = {
+                "name_database": getNameDatabase,
+                "name_table": getNameTable,
+                "query": full_query,
+            }
+            messageBody = quote(str(messageBody))
+        
+            SendRequest = sqs.send_message(QueueUrl= url, MessageBody=messageBody)
+        return redirect(url_for('_createTable.index'))
 class UserProfileView(BaseView):
     @expose('/', methods=["POST","GET"])
     def index(self):
@@ -85,47 +116,16 @@ class UserManageTableView(BaseView):
         self._template_args["datatype"] = dataDatatype
         return self.render('admin/table/create-table.html')
 
-class SubmitUserManageTableView(BaseView):
-    @expose('/', methods=["POST"])
+
+class MyUserIndexView(AdminIndexView):
+    @expose('/')
     def index(self):
-        i = 1
-        full_query = "("
-        while request.form.get('nameColumnTable' + str(i)) != "" and request.form.get(
-                'nameColumnTable' + str(i)) is not None:
-            query = ""
-            query += request.form.get('nameColumnTable' + str(i)) + " "
-            query += request.form.get('chooseTypeColumn' + str(i))
-            if request.form.get('PK' + str(i)) == "PK":
-                query += " PRIMARY KEY"
-            if request.form.get('NN' + str(i)) == "NN":
-                query += " NOT NULL"
-            if request.form.get('UQ' + str(i)) == "UQ":
-                query += " UNIQUE"
-            if request.form.get('nameColumnTable' + str(i + 1)) != "" and request.form.get(
-                    'nameColumnTable' + str(i + 1)) is not None:
-                query += ","
-            full_query += query
-            i = i + 1
-        full_query += ");"
-        getNameDatabase = (current_user.UserName + "_" + request.form.get('choose_database'))
-        getNameTable = request.form.get('nameTable')
-
-        if request.method == "POST":
-            sqs = boto3.client('sqs', aws_access_key_id='AKIAW42XZTVSJTHUE56I',
-            aws_secret_access_key='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', region_name='us-east-1')
-
-            url = 'https://sqs.us-east-1.amazonaws.com/474241146212/AddTable'
-
-            messageBody = {
-                "name_database": getNameDatabase,
-                "name_table": getNameTable,
-                "query": full_query,
-            }
-            messageBody = quote(str(messageBody))
-        
-            SendRequest = sqs.send_message(QueueUrl= url, MessageBody=messageBody)
-        return redirect(url_for('_createTable.index'))
-
+        if not current_user:
+            flash('Please log in first...', category='danger')
+            return redirect(url_for('login_account'))
+        userCreateDatabase = UserCreateDatabase.query.filter_by(IdUserCreate = current_user.Id)
+        self._template_args["userCreateDatabase"] = userCreateDatabase
+        return super(MyUserIndexView, self).index()
 class DetailDatabaseView(ModelView):
     list_template = 'admin/database/detail-database.html'
 

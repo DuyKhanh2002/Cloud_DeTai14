@@ -9,6 +9,28 @@ from urllib.parse import quote
 import requests
 from my_app.common import InfoConnection
 
+def CountRowTable(namedatabase, nametable):
+    conn = InfoConnection()
+    try:
+        with conn.cursor() as cur:
+            query = "SELECT COUNT(*) FROM " + namedatabase + "." + nametable
+            cur.execute(query)
+            data = cur.fetchall()
+        conn.commit()
+    except Exception as e:
+        print(e)
+    return data
+
+
+def UpdateInfoAddRowDatabase(namedatabase, nametable):
+    conn = InfoConnection()
+    try:
+        with conn.cursor() as cur:
+            query = "UPDATE ManageUser.InfoAddRowDatabase SET NameDatabase = '" + namedatabase + "', NameTable = '" + nametable + "' WHERE Id = 1"
+            cur.execute(query)
+        conn.commit()
+    except Exception as e:
+        print(e)
 
 def add_user(email, username, password):
     user = Users()
@@ -173,28 +195,6 @@ def GetUrlEditTable(data):
     return listUrl
 
 
-def CountRowTable(namedatabase, nametable):
-    conn = InfoConnection()
-    try:
-        with conn.cursor() as cur:
-            query = "SELECT COUNT(*) FROM " + namedatabase + "." + nametable
-            cur.execute(query)
-            data = cur.fetchall()
-        conn.commit()
-    except Exception as e:
-        print(e)
-    return data
-
-
-def UpdateInfoAddRowDatabase(namedatabase, nametable):
-    conn = InfoConnection()
-    try:
-        with conn.cursor() as cur:
-            query = "UPDATE ManageUser.InfoAddRowDatabase SET NameDatabase = '" + namedatabase + "', NameTable = '" + nametable + "' WHERE Id = 1"
-            cur.execute(query)
-        conn.commit()
-    except Exception as e:
-        print(e)
 
 
 def GetInfoAddRowDatabase():
