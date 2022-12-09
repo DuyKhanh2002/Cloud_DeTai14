@@ -8,10 +8,9 @@
 - Thêm, xóa, sửa dữ liệu trong Table
 
 ## Công nghệ sử dụng
-
 ## Ngôn ngữ: Python 
-## Client: HTML, CSS3, BOOTSTRAP 4, JavaScript
-## Server: AWS Lambda, AWS SQS, AWS EC2,Flask Framework
+## Thư Viện: boto3,,Flask Framework,...
+## Server: AWS Lambda, AWS SQS, AWS EC2
 ## Database: MySQL
 
 ## Thành viên của nhóm
@@ -30,7 +29,7 @@ Clone project từ github
 Truy cập thư mục chứa project
 
 ```bash
-  cd Cloud_DeTai14
+  cd Cloud_Nhom31
 ```
 
 Tạo môi trường ảo
@@ -50,25 +49,6 @@ Cài đặt các thư viện
 ```bash
   pip install -r requirements.txt
 ```
-
-Chạy file models
-
-```bash
-  python3
-```
-
-```bash
-  from my_app import db
-```
-
-```bash
-  from my_app.models import *
-```
-
-```bash
-  db.create_all()
-```
-
 Chạy file run.py
 
 ```bash
@@ -140,7 +120,7 @@ cd Cloud_DeTai14
 ```
 
 ```bash
-cd Detai14_Project
+cd Cloud_Nhom31
 ```
 
 Truy cập file run.py
