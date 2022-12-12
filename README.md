@@ -106,14 +106,7 @@ Dùng git clone để project về
   git clone https://github.com/DuyKhanh2002/Cloud_DeTai14.git
 ```
 
-Truy cập vào flaskapplication
-```bash
-mkdir flaskapplication
-```
-
-```bash
-mkdir flaskapplication
-```
+Truy cập vào project vừa git về:
 
 ```bash
 cd Cloud_DeTai14
