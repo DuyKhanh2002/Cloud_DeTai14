@@ -91,15 +91,12 @@ Cài đặt các thư viện cần thiết
 ```bash
 sudo pip3 install flask
 ```
-
 ```bash
-sudo apt-get install nginx
+  pip install -r requirements.txt
 ```
-
 ```bash
-sudo apt-get install gunicorn3
+sudo pip3 install boto3
 ```
-
 Dùng git clone để project về 
 
 ```bash
