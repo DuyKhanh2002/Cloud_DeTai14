@@ -32,18 +32,6 @@ Truy cập thư mục chứa project
   cd Cloud_Nhom31
 ```
 
-Tạo môi trường ảo
-
-```bash
-  virtualenv venv
-```
-
-Kích hoạt môi trường ảo
-
-```bash
-  .\venv\Scripts\activate
-```
-
 Cài đặt các thư viện 
 
 ```bash
@@ -77,15 +65,6 @@ sudo apt-get install python3
 ```bash
 sudo apt-get install python3-pip
 ```
-Nếu muốn kiểm tra lại dùng lệnh
-
-```bash
-whereis python
-```
-
-```bash
-whereis pip3
-```
 
 Cài đặt các thư viện cần thiết
 ```bash
@@ -97,6 +76,7 @@ sudo pip3 install flask
 ```bash
 sudo pip3 install boto3
 ```
+
 Dùng git clone để project về 
 
 ```bash
